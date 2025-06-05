@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caption Rewriter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col items-center justify-start p-6">
+  <div class="w-full max-w-2xl bg-white rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-center mb-4">✨ Caption Rewriter</h1>
+    <p class="text-center text-sm text-gray-500 mb-6">Paste a sentence, get it rewritten in multiple styles — fun, poetic, sarcastic & more.</p>
+
+    <textarea id="inputText" rows="3" class="w-full border border-gray-300 rounded p-2 mb-4" placeholder="Enter your sentence..."></textarea>
+    <button onclick="rewriteText()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded mb-4">Rewrite</button>
+
+    <div id="outputContainer" class="space-y-4 hidden">
+      <h2 class="text-xl font-semibold">Rewritten Captions:</h2>
+      <div id="results" class="space-y-2"></div>
+    </div>
+  </div>
+
+  <script>
+    const styles = {
+      witty: text => `That moment when: ${text.toUpperCase()}... but with flair.`,
+      sarcastic: text => `Oh sure, like "${text}" was *such* a good idea.`,
+      poetic: text => `"${text}," whispered the wind under a violet sky.`,
+      motivational: text => `Believe it: ${text}. Now go conquer the world.`,
+      filmy: text => `If this were a movie, "${text}" would be the climax line.`
+    };
+
+    function rewriteText() {
+      const input = document.getElementById('inputText').value.trim();
+      const output = document.getElementById('results');
+      const container = document.getElementById('outputContainer');
+
+      if (!input) return alert("Please enter a sentence.");
+
+      output.innerHTML = '';
+      for (const [style, generator] of Object.entries(styles)) {
+        const p = document.createElement('p');
+        p.className = "bg-gray-100 p-3 rounded";
+        p.innerHTML = `<strong>${style[0].toUpperCase() + style.slice(1)}:</strong> ${generator(input)}`;
+        output.appendChild(p);
+      }
+      container.classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
