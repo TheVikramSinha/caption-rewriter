@@ -7,7 +7,7 @@ Built for speed, fun, and instant sharing.
 
 ## 🔗 Live Demo
 
-[Try it here](https://your-username.github.io/caption-rewriter)  
+[Try it here](https://thevikramsinha.github.io/caption-rewriter/)  
 
 ---
 
